@@ -1,0 +1,551 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff2570a1"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/statusbar_sp"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"></View>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/goback"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:scaleType="center"
+                    android:src="@drawable/ad_left" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="提醒设置"
+                android:textColor="#fff"
+                android:textSize="18sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_top">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="5dp"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:text="刷新时间："
+                    android:textSize="16sp" />
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/time_sub"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/icon_tone_sub_p" />
+
+                    <TextView
+                        android:id="@+id/time_input"
+                        android:layout_width="45dp"
+                        android:layout_height="35dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/tx_input"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textColor="#fff" />
+
+                    <TextView
+                        android:id="@+id/time_add"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/icon_tone_add_p" />
+                </LinearLayout>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="5dp"
+                android:background="#fff">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center"
+                    android:text="提醒次数"
+                    android:textSize="16sp" />
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/alarmcount_sub"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/icon_tone_sub_p" />
+
+                    <TextView
+                        android:id="@+id/alarmcount_input"
+                        android:layout_width="45dp"
+                        android:layout_height="35dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/tx_input"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textColor="#fff" />
+
+                    <TextView
+                        android:id="@+id/alarmcount_add"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/icon_tone_add_p" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="#fff">
+
+            <RelativeLayout
+                android:id="@+id/rl_time"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="20dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"
+                    android:text="交易时间提醒"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_pp1"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="25dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/up"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_grouptime"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_time">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_0900"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:descendantFocusability="blocksDescendants"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_marginLeft="50dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:text="早上开市时间"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_alignParentRight="true"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/checkdrawable"
+                            android:textSize="16sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_1130"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:descendantFocusability="blocksDescendants"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_marginLeft="50dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:text="早上闭市时间"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_alignParentRight="true"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/checkdrawable"
+                            android:textSize="16sp" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/rl_1300"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:descendantFocusability="blocksDescendants"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_marginLeft="50dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:text="下午开市时间"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_alignParentRight="true"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/checkdrawable"
+                            android:textSize="16sp" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/rl_1500"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:descendantFocusability="blocksDescendants"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_marginLeft="50dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:text="下午闭市时间"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_alignParentRight="true"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/checkdrawable"
+                            android:textSize="16sp" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/rl_1430"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:descendantFocusability="blocksDescendants"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_marginLeft="50dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:text="神奇2点半时间"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_alignParentRight="true"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:gravity="center"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="15dp"
+                            android:background="@drawable/checkdrawable"
+                            android:textSize="16sp" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="#fff">
+
+                <RelativeLayout
+                    android:id="@+id/rl_tip"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_centerVertical="true"
+                        android:text="通知种类"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_pp2"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="25dp"
+                        android:layout_height="20dp"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/up"
+                        android:textSize="16sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_grouptip"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_tip">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:id="@+id/rl_zhendong"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:descendantFocusability="blocksDescendants"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_marginLeft="50dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_centerVertical="true"
+                                android:text="震动"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_alignParentRight="true"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="15dp"
+                                android:background="@drawable/checkdrawable"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_tongzhi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:descendantFocusability="blocksDescendants"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_marginLeft="50dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_centerVertical="true"
+                                android:text="通知"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_alignParentRight="true"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="15dp"
+                                android:background="@drawable/checkdrawable"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/rl_tusi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:descendantFocusability="blocksDescendants"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_marginLeft="50dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_centerVertical="true"
+                                android:text="吐司"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_alignParentRight="true"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="15dp"
+                                android:background="@drawable/checkdrawable"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/rl_shengyin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:descendantFocusability="blocksDescendants"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_marginLeft="50dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_centerVertical="true"
+                                android:text="声音"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_alignParentRight="true"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="15dp"
+                                android:background="@drawable/checkdrawable"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/rl_flash"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:descendantFocusability="blocksDescendants"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_marginLeft="50dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_centerVertical="true"
+                                android:text="闪光灯"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_alignParentRight="true"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:gravity="center"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="15dp"
+                                android:background="@drawable/checkdrawable"
+                                android:textSize="16sp" />
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+
+
+
+
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

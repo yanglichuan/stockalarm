@@ -47,25 +47,24 @@
             android:screenOrientation="portrait"
             android:launchMode="singleTask"></activity>
         <activity
-            android:name=".SaveAdsActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask"></activity>
-        <activity
-            android:name=".SaveBatteryActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask"></activity>
-        <activity
-            android:name=".SaveFlowActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask"></activity>
-        <activity
-            android:name=".SaveAccActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTask"></activity>
-        <activity
             android:name=".FaqActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTask"></activity>
+
+        <activity
+            android:name=".NotifyYouSettingActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"></activity>
+
+        <activity
+            android:name=".StockAddActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask"></activity>
+
+
+
+
+
 
 
         <service android:name=".service.BlockService">

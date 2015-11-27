@@ -144,9 +144,9 @@ public class NotificationUtils {
         mNotification.flags = Notification.FLAG_ONGOING_EVENT|Notification.FLAG_NO_CLEAR;
         //FLAG_ONGOING_EVENT 在顶部常驻，可以调用下面的清除方法去除 FLAG_AUTO_CANCEL 点击和清理可以去调
         //设置显示通知时的默认的发声、震动、Light效果
-        // mNotification.defaults = Notification.DEFAULT_VIBRATE;
+         mNotification.defaults = Notification.DEFAULT_ALL;
         //设置发出消息的内容
-        mNotification.tickerText = ct.getString(R.string.app_name);
+        mNotification.tickerText = "股票预警";
         //设置发出通知的时间
         mNotification.when = System.currentTimeMillis();
         // mNotification.setLatestEventInfo(this, "常驻测试", "使用cancel()方法才可以把我去掉哦", null); //设置详细的信息 ,这个方法现在已经不用了

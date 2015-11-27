@@ -39,11 +39,11 @@
                 android:layout_height="50dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                ripple:rv_alpha="127"
                 ripple:rv_color="@color/bg_gray"
                 ripple:rv_rippleDuration="150"
-                ripple:rv_alpha="127"
-                ripple:rv_zoom="true"
-                ripple:rv_type="doubleRipple">
+                ripple:rv_type="doubleRipple"
+                ripple:rv_zoom="true">
 
                 <TextView
                     android:layout_width="50dp"
@@ -54,8 +54,8 @@
         </RelativeLayout>
 
         <com.zhy.android.percent.support.PercentRelativeLayout
-            android:layout_width="0dp"
             android:id="@+id/anim_view"
+            android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_below="@+id/title"
             android:layout_centerHorizontal="true"
@@ -90,31 +90,21 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                app:layout_widthPercent="65%w"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_centerInParent="true"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layout_widthPercent="65%w">
 
                 <TextView
                     android:id="@+id/tip_top"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:singleLine="true"
                     android:text="OPEN"
-                    android:gravity="center"
                     android:textColor="#FFF"
-                    android:singleLine="true"
                     android:textSize="@dimen/textsize_top" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:id="@+id/tip_bottom"
-                    android:layout_height="wrap_content"
-                    android:text="00000000"
-                    android:gravity="center"
-                    android:singleLine="true"
-                    android:textColor="#FFF"
-                    android:textSize="@dimen/textsize_bottom" />
             </LinearLayout>
         </com.zhy.android.percent.support.PercentRelativeLayout>
 
@@ -123,8 +113,8 @@
             android:id="@+id/scan_"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="10dp"
             android:text=""
             android:textColor="#FFF"
@@ -139,174 +129,263 @@
         app:layout_heightPercent="40%h"
         app:layout_widthPercent="100%w">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="3"
+                android:background="@drawable/dapan"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_sz"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="上证指数"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/sh_zhishu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="120dp"
+                            android:text="3000"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/sh_zhangfu"
+                            android:layout_width="58dp"
+                            android:layout_height="58dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="250dp"
+                            android:background="@drawable/hao1"
+                            android:gravity="center"
+                            android:text="+5%"
+                            android:textColor="#FFF"
+                            android:textSize="16sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_below="@+id/rl_sz"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:text="深证指数"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/sz_zhishu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="120dp"
+                            android:text="10000"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/sz_zhangfu"
+                            android:layout_width="58dp"
+                            android:layout_height="58dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="250dp"
+                            android:background="@drawable/hao1"
+                            android:gravity="center"
+                            android:text="+5%"
+                            android:textColor="#FFF"
+                            android:textSize="16sp" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_height="match_parent"
+                    android:background="#f00"></View>
+                <View
+                    android:layout_width="3dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_height="match_parent"
+                    android:background="#f00"></View>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/stockview1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:background="@drawable/ylc1"
                 android:orientation="horizontal">
 
-
-                <com.andexert.library.RippleView
-                    android:id="@+id/item1_ft"
-                    android:layout_width="0dp"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    ripple:rv_type="rectangle"
-                    ripple:rv_color="@color/bg_gray"
-                    ripple:rv_rippleDuration="150"
-                    ripple:rv_alpha="127"
-                    ripple:rv_zoom="true">
-
-                    <LinearLayout
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:id="@+id/stockname1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical">
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="招商银行"
+                        android:textSize="20sp" />
 
-                        <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:src="@drawable/ad_block" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:gravity="center"
-                            android:layout_height="wrap_content"
-                            android:text="@string/AdBlocks" />
-                    </LinearLayout>
-                    <!--</RelativeLayout>-->
-                </com.andexert.library.RippleView>
-
-                <com.andexert.library.RippleView
-                    android:id="@+id/item2_ft"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    ripple:rv_color="@color/bg_gray"
-                    ripple:rv_rippleDuration="150"
-                    ripple:rv_alpha="127"
-                    ripple:rv_type="rectangle"
-                    ripple:rv_zoom="true">
-
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/stockprice1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical">
+                        android:layout_marginLeft="150dp"
+                        android:layout_centerVertical="true"
+                        android:text="7.5"
+                        android:textSize="16sp" />
 
-                        <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:src="@drawable/ad_acce" />
+                    <TextView
+                        android:id="@+id/currentzhangfu1"
+                        android:layout_width="58dp"
+                        android:layout_height="58dp"
+                        android:layout_marginLeft="30dp"
+                        android:layout_toRightOf="@+id/stockprice1"
+                        android:background="@drawable/hao1"
+                        android:gravity="center"
+                        android:layout_centerVertical="true"
+                        android:text="+5%"
+                        android:textColor="#FFF"
+                        android:textSize="16sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:gravity="center"
-                            android:layout_height="wrap_content"
-                            android:text="@string/MobileAccelerate" />
-                    </LinearLayout>
-                    <!--</RelativeLayout>-->
-                </com.andexert.library.RippleView>
 
+                    <TextView
+                        android:id="@+id/nowshouyi1"
+                        android:layout_width="58dp"
+                        android:layout_height="58dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="30dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/hao1"
+                        android:gravity="center"
+                        android:text="+5%"
+                        android:textColor="#FFF"
+                        android:textSize="16sp" />
 
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_height="match_parent"
+                        android:background="#f00"></View>
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_height="match_parent"
+                        android:background="#f00"></View>
+
+                </RelativeLayout>
             </LinearLayout>
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="2"
+                android:id="@+id/stockview2"
+                android:background="@drawable/ylc2"
                 android:orientation="horizontal">
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal"
+                   >
 
-                <com.andexert.library.RippleView
-                    android:id="@+id/item3_ft"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    ripple:rv_color="@color/bg_gray"
-                    ripple:rv_rippleDuration="150"
-                    ripple:rv_alpha="127"
-                    ripple:rv_type="rectangle"
-                    ripple:rv_zoom="true">
-
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/stockname2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical">
+                        android:layout_centerVertical="true"
+                        android:text="北京银行"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="20sp" />
 
-                        <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:src="@drawable/ad_flow" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="@string/SaveFlow" />
-                    </LinearLayout>
-                    <!--</RelativeLayout>-->
-
-                </com.andexert.library.RippleView>
-
-
-                <!--  android:background="@drawable/selector_row"-->
-                <com.andexert.library.RippleView
-                    android:id="@+id/item4_ft"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    ripple:rv_color="@color/bg_gray"
-                    ripple:rv_rippleDuration="150"
-                    ripple:rv_alpha="127"
-                    ripple:rv_type="rectangle"
-                    ripple:rv_zoom="true">
-
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/stockprice2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical">
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="150dp"
+                        android:text="7.5"
+                        android:textSize="16sp" />
 
-                        <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:src="@drawable/ad_battery" />
+                    <TextView
+                        android:id="@+id/currentzhangfu2"
+                        android:layout_width="58dp"
+                        android:layout_height="58dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/hao1"
+                        android:layout_marginLeft="30dp"
+                        android:layout_toRightOf="@+id/stockprice2"
+                        android:gravity="center"
+                        android:text="+5%"
+                        android:textColor="#FFF"
+                        android:textSize="16sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:gravity="center"
-                            android:layout_height="wrap_content"
-                            android:text="@string/SavePower" />
-                    </LinearLayout>
-                    <!--</RelativeLayout>-->
-                </com.andexert.library.RippleView>
+
+                    <TextView
+                        android:id="@+id/nowshouyi2"
+                        android:layout_width="58dp"
+                        android:layout_height="58dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/hao1"
+                        android:gravity="center"
+                        android:text="+5%"
+                        android:textColor="#FFF"
+                        android:textSize="16sp" />
+
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_height="match_parent"
+                        android:background="#f0f"></View>
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_height="match_parent"
+                        android:background="#f0f"></View>
+                </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_centerVertical="true"
-            android:background="@color/linecolor"></View>
-
-        <View
-            android:layout_width="1px"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:background="@color/linecolor"></View>
     </RelativeLayout>
 
 

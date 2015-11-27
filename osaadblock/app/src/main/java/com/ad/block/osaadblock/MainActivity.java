@@ -6,6 +6,8 @@ import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,23 +22,20 @@ import android.widget.TextView;
 import com.ad.block.osaadblock.event.BaseEvent;
 import com.ad.block.osaadblock.event.BlockEvent;
 import com.ad.block.osaadblock.service.BlockService;
-import com.ad.block.osaadblock.utils.AdBlockUtils;
 import com.ad.block.osaadblock.utils.CommonUtils;
-import com.ad.block.osaadblock.utils.UMengUtil;
+import com.ad.block.osaadblock.utils.NotificationUtils;
+import com.ad.block.osaadblock.utils.StockNewSettingUtils;
+import com.ad.block.osaadblock.utils.StockUtils;
 import com.andexert.library.RippleView;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 public class MainActivity extends BaseActivity implements RippleView.OnRippleCompleteListener {
     private View setting;
-
-    private RippleView viewItem1_ft;
-    private RippleView viewItem2_ft;
-    private RippleView viewItem3_ft;
-    private RippleView viewItem4_ft;
 
     private View anim_wholeview;
     private View top_color;
@@ -44,7 +43,6 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
     private View opened_bg;
 
     private TextView tip_top;
-    private TextView tip_bottom;
 
     private final int STATE_CLOSED = 1;
     private final int STATE_OPENING = 2;
@@ -54,17 +52,15 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
     //初始化状态值
     private int iBlockState = STATE_CLOSED;
 
+
+
+    private View stockView1;
+    private View stockView2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        //上报数据
-        UMengUtil.um_dayStartCount(mContext.getApplicationContext());
-
         tip_top = (TextView) findViewById(R.id.tip_top);
-        tip_bottom = (TextView) findViewById(R.id.tip_bottom);
-        tip_bottom.setVisibility(View.GONE);
         tip_top.setText(getString(R.string.open));
 
         iBlockState = STATE_CLOSED;
@@ -79,21 +75,74 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
         anim_wholeview = findViewById(R.id.anim_view);
         anim_wholeview.setOnClickListener(this);
 
-        viewItem1_ft = (RippleView) findViewById(R.id.item1_ft);
-        viewItem2_ft = (RippleView) findViewById(R.id.item2_ft);
-        viewItem3_ft = (RippleView) findViewById(R.id.item3_ft);
-        viewItem4_ft = (RippleView) findViewById(R.id.item4_ft);
-        viewItem1_ft.setOnClickListener(this);
-        viewItem2_ft.setOnClickListener(this);
-        viewItem3_ft.setOnClickListener(this);
-        viewItem4_ft.setOnClickListener(this);
-
         if(CommonUtils.isServiceRunning(mContext,BlockService.class.getCanonicalName())){
             noAnimOpen();
         }else{
             //不做任何事情
         }
+
+        stockname1 = (TextView) findViewById(R.id.stockname1);
+        stockname2 = (TextView) findViewById(R.id.stockname2);
+        currentGP1Price = (TextView) findViewById(R.id.stockprice1);
+        currentGP2Price = (TextView) findViewById(R.id.stockprice2);
+        currentZhangfu1 = (TextView) findViewById(R.id.currentzhangfu1);
+        currentZhagnfu2 = (TextView) findViewById(R.id.currentzhangfu2);
+        nowshouyi1 = (TextView) findViewById(R.id.nowshouyi1);
+        nowshouyi2 = (TextView) findViewById(R.id.nowshouyi2);
+
+
+        sh_zhishu = (TextView) findViewById(R.id.sh_zhishu);
+        sh_zhangfu = (TextView) findViewById(R.id.sh_zhangfu);
+        sz_zhishu = (TextView) findViewById(R.id.sz_zhishu);
+        sz_zhangfu = (TextView) findViewById(R.id.sz_zhangfu);
+
+
+        stockView1 = findViewById(R.id.stockview1);
+        stockView2 = findViewById(R.id.stockview2);
+        stockView1.setOnClickListener(this);
+        stockView2.setOnClickListener(this);
+
+
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initUI();
+        updateSum();
+    }
+
+    private TextView sh_zhishu;
+    private TextView sh_zhangfu;
+    private TextView sz_zhishu;
+    private TextView sz_zhangfu;
+    private TextView stockname1;
+    private TextView stockname2;
+    private TextView currentGP1Price;
+    private TextView currentGP2Price;
+    private TextView currentZhangfu1;
+    private TextView currentZhagnfu2;
+    private TextView nowshouyi1;
+    private TextView nowshouyi2;
+
+
+    private void initUI(){
+        //
+        String name1 = StockUtils.getStockName1(mContext);
+        String name2 = StockUtils.getStockName2(mContext);
+
+        String code1 = StockUtils.getStockCode1(mContext);
+        String code2 = StockUtils.getStockCode2(mContext);
+
+        stockname1.setText(name1+"\n"+code1);
+        stockname2.setText(name2+"\n"+code2);
+    }
+
+
+
+
+
+
     @Override
     protected String getUmPageName() {
         return this.getClass().getSimpleName();
@@ -130,43 +179,23 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
     }
 
 
-    private void setTip(){
-        int num2 = AdBlockUtils.getMonthBlockAdNum(mContext);
-        if(String.valueOf(num2).length() < 8){
-            tip_top.setText(getString(R.string.blockAD));
-            tip_bottom.setVisibility(View.VISIBLE);
-            tip_bottom.setText("00000000".substring(String.valueOf(num2).length())+num2);
-        }else{
-            tip_top.setText(getString(R.string.blockAD));
-            tip_bottom.setVisibility(View.VISIBLE);
-            tip_bottom.setText(""+num2);
-        }
-    }
-
     private void setStateOpened(){
-        //显示本月拦截的数目
-        setTip();
+        tip_top.setText(getString(R.string.close));
         iBlockState = STATE_OPENED;
     }
 
     private void setStateClosed(){
         tip_top.setText(getString(R.string.open));
-        tip_bottom.setVisibility(View.GONE);
-        tip_bottom.setText("");
         iBlockState = STATE_CLOSED;
     }
 
     private void setStateOpening(){
         tip_top.setText(getString(R.string.opening));
-        tip_bottom.setVisibility(View.GONE);
-        tip_bottom.setText("");
         iBlockState = STATE_OPENING;
     }
 
     private void setStateCloseing(){
         tip_top.setText(getString(R.string.closeing));
-        tip_bottom.setVisibility(View.GONE);
-        tip_bottom.setText("");
         iBlockState = STATE_CLOSEING;
     }
 
@@ -210,7 +239,7 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
                 });
             }
         });
-        animFadeOut(ratateLine,true,new AnimLL() {
+        animFadeOut(ratateLine, true, new AnimLL() {
             @Override
             public void onAnimationStart(Animator animation) {
                 ratateLine.setVisibility(View.VISIBLE);
@@ -221,7 +250,7 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
 
     private void animOpen(){
         animRotate(ratateLine, false);
-        animBackGroundColor(top_color, false,new AnimLL() {
+        animBackGroundColor(top_color, false, new AnimLL() {
             @Override
             public void onAnimationStart(Animator animation) {
                 setStateOpening();
@@ -235,18 +264,19 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
                         opened_bg.setVisibility(View.VISIBLE);
                         setStateOpened();
 
-                        startService(new Intent(mContext,BlockService.class));
+                        startService(new Intent(mContext, BlockService.class));
                     }
 
                     @Override
                     public void onAnimationEnd(Animator animation) {
                     }
                 });
-                animFadeOut(ratateLine,false,new AnimLL() {
+                animFadeOut(ratateLine, false, new AnimLL() {
                     @Override
                     public void onAnimationStart(Animator animation) {
                         ratateLine.setVisibility(View.VISIBLE);
                     }
+
                     @Override
                     public void onAnimationEnd(Animator animation) {
                         ratateLine.setVisibility(View.GONE);
@@ -332,7 +362,6 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
     }
 
 
-
     private Handler mHandle = new Handler();
     @Override
     public void onClick(View v) {
@@ -354,52 +383,12 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
                     }
                 }, 500);
                 break;
-            case R.id.item1_ft:
-                //添加统计
-                UMengUtil.um_SaveAds(this.getApplicationContext());
 
-                mHandle.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        SaveAdsActivity.openActivity(mContext);
-                    }
-                }, 500);
+            case  R.id.stockview1:
+                StockAddActivity.openActivity(mContext);
                 break;
-            case R.id.item2_ft:
-                //添加统计
-                UMengUtil.um_SaveAcc(this.getApplicationContext());
-
-
-                mHandle.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        SaveAccActivity.openActivity(mContext);
-                    }
-                }, 500);
-
-                break;
-            case R.id.item3_ft:
-                //添加统计
-                UMengUtil.um_SaveFlow(this.getApplicationContext());
-
-                mHandle.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        SaveFlowActivity.openActivity(mContext);
-                    }
-                }, 500);
-
-                break;
-            case R.id.item4_ft:
-                //添加统计
-                UMengUtil.um_SaveBattery(this.getApplicationContext());
-
-                mHandle.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        SaveBatteryActivity.openActivity(mContext);
-                    }
-                }, 500);
+            case  R.id.stockview2:
+                StockAddActivity.openActivity(mContext);
                 break;
         }
     }
@@ -408,16 +397,12 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
     public void onComplete(RippleView rippleView) {
         switch (rippleView.getId()){
             case R.id.item1_ft:
-                SaveAdsActivity.openActivity(mContext);
                 break;
             case R.id.item2_ft:
-                SaveAccActivity.openActivity(mContext);
                 break;
             case R.id.item3_ft:
-                SaveFlowActivity.openActivity(mContext);
                 break;
             case R.id.item4_ft:
-                SaveBatteryActivity.openActivity(mContext);
                 break;
         }
     }
@@ -427,30 +412,124 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
     public void onEventMainThread(BaseEvent event) {
         super.onEventMainThread(event);
         if(event instanceof BlockEvent){
-
-            HttpRequestManager.getInstance(getApplicationContext()).request_stock("sh600288", new Callback() {
-                @Override
-                public void onFailure(Request request, IOException e) {
-
-                }
-                @Override
-                public void onResponse(Response response) throws IOException {
-                    if(response != null && response.body() != null){
-                        final String res = new String(response.body().string());
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                if(!TextUtils.isEmpty(res)){
-                                    String[] splits = res.split(",");
-                                    tip_top.setText("sh600288");
-                                    tip_bottom.setText(splits[3]);
-                                }
-                            }
-                        });
-                    }
-                }
-            });
+            updateSum();
         }
     }
+
+    private void updateSum(){
+        String str = StockUtils.getStockCode1(mContext);
+        String real = StockNewSettingUtils.getStockExchange(mContext,str) + str;
+        try {
+            float ff = Float.parseFloat(StockUtils.getStockBuyPrice1(mContext));
+            float low =Float.parseFloat(StockUtils.getStockKuisun1(mContext));
+            float hight = Float.parseFloat(StockUtils.getStockYingli1(mContext));
+            updateCustom(real,currentGP1Price,currentZhangfu1,nowshouyi1,ff,low,hight);
+        }catch (Exception e){
+            e.printStackTrace();;
+        }
+
+
+
+        str = StockUtils.getStockCode2(mContext);
+        real = StockNewSettingUtils.getStockExchange(mContext,str) + str;
+
+        try {
+            float ff = Float.parseFloat(StockUtils.getStockBuyPrice2(mContext));
+            float low =Float.parseFloat(StockUtils.getStockKuisun2(mContext));
+            float hight = Float.parseFloat(StockUtils.getStockYingli2(mContext));
+            updateCustom(real, currentGP2Price, currentZhagnfu2, nowshouyi2, ff, low, hight);
+        }catch (Exception e){
+            e.printStackTrace();;
+        }
+
+
+        updateSh();
+        updatesz();
+    }
+
+
+    private void updateSh(){
+        updateCustom("sh000001",sh_zhishu,sh_zhangfu,null,0,0,0);
+
+    }
+    private void updatesz(){
+        updateCustom("sz399001",sz_zhishu,sz_zhangfu,null,0,0,0);
+    }
+
+    private void updateCustom(final String realCode,
+                              final TextView pricetv,
+                              final TextView zhangfuTv,
+                              final TextView yinglilema,
+                              final float buyprice,
+                                final float low,
+                              final float high){
+        HttpRequestManager.getInstance(getApplicationContext()).request_stock(realCode, new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+            }
+            @Override
+            public void onResponse(Response response) throws IOException {
+                if(response != null && response.body() != null){
+                    final String res = new String(response.body().string());
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(!TextUtils.isEmpty(res)){
+                                String[] splits = res.split(",");
+                                if(splits.length>3){
+                                    String currentPrice = splits[3];
+                                    Float ztPrice = Float.parseFloat(splits[2]);
+                                    Float jtPrice = Float.parseFloat(currentPrice);
+                                    Float zzf = (jtPrice - ztPrice)/ztPrice*100;
+                                    DecimalFormat decimalFormat = new DecimalFormat(".00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+                                    String p=decimalFormat.format(zzf);//format 返回的是字符串
+                                    pricetv.setText(currentPrice);
+                                    zhangfuTv.setText(p);
+
+                                    if((jtPrice-ztPrice)>0){
+                                        zhangfuTv.setBackgroundResource(R.drawable.hao1);
+                                    }else{
+                                        zhangfuTv.setBackgroundResource(R.drawable.hao2);
+                                    }
+
+                                    if(yinglilema!= null){
+                                        zzf = (jtPrice - buyprice)/buyprice*100;
+                                        decimalFormat=new DecimalFormat("0.00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+                                        p=decimalFormat.format(zzf);//format 返回的是字符串
+                                        yinglilema.setText(p);
+
+
+                                        if((jtPrice - buyprice)>0){
+                                            yinglilema.setBackgroundResource(R.drawable.hao1);
+                                        }else{
+                                            yinglilema.setBackgroundResource(R.drawable.hao2);
+                                        }
+
+                                        //报警
+                                        if(zzf < low){
+                                            String tip = null;
+                                            tip=realCode+"已经超跌了";
+                                            Notification notification = NotificationUtils.creatNotify(mContext, tip);
+                                            NotificationManager manager = (NotificationManager) mContext.getSystemService(NOTIFICATION_SERVICE);
+                                            manager.notify(444,notification);
+                                        }
+                                        if(zzf > high){
+                                            String tip = null;
+                                            tip=realCode+"已经超涨了";
+                                            Notification notification = NotificationUtils.creatNotify(mContext,tip);
+                                            NotificationManager manager = (NotificationManager) mContext.getSystemService(NOTIFICATION_SERVICE);
+                                            manager.notify(333, notification);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+
+
 }

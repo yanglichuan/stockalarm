@@ -71,6 +71,11 @@ public class RecordFileUtils {
 		return sp.getString(key, "");
 	}
 
+	public String getStringData(String key,String defaultstr) {
+		SharedPreferences sp = getSP();
+		return sp.getString(key, defaultstr);
+	}
+
 	public boolean setStringData(String key, String value) {
 		SharedPreferences sp = getSP();
 		if (sp == null) {

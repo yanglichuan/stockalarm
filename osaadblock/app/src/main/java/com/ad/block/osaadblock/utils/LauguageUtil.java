@@ -3,9 +3,6 @@ package com.ad.block.osaadblock.utils;
 import java.util.Locale;
 
 public class LauguageUtil {
-
-
-
     public static boolean isTrkin() {
         String language = getLanguageEnv();
 

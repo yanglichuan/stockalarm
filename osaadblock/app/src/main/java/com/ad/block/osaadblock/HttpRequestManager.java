@@ -38,7 +38,7 @@ public class HttpRequestManager {
 			return false;
 		}
 
-		if(!stocknum.startsWith("sh") && stocknum.startsWith("sz")){
+		if(!stocknum.startsWith("sh") && !stocknum.startsWith("sz")){
 			return false;
 		}
 

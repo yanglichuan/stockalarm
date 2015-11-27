@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="@string/about"
+                android:text="关于我们"
                 android:textColor="#fff"
                 android:textSize="@dimen/textsize1" />
         </RelativeLayout>
@@ -58,26 +58,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/ll_top"
         android:orientation="vertical">
-        
-        
-        
         <TextView
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="20dp"
-            android:background="@mipmap/ic_launcher"
+            android:background="@mipmap/icond"
             android:layout_gravity="center_horizontal"
             />
-
-        <TextView
-            android:id="@+id/tv_version"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/versiontip"/>
-
 
         <com.andexert.library.RippleView
             android:id="@+id/faq"
@@ -99,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:text="FAQ" />
+                android:text="软件问题反馈" />
 
 
             <View
@@ -119,6 +106,43 @@
 
 
         <com.andexert.library.RippleView
+            android:id="@+id/faq1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#fff"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:touchscreenBlocksFocus="true"
+            ripple:rv_alpha="127"
+            ripple:rv_color="@color/bg_gray"
+            ripple:rv_rippleDuration="150"
+            ripple:rv_type="rectangle"
+            ripple:rv_zoom="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="推荐给好友" />
+
+
+            <View
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/ad_right"></View>
+
+
+        </com.andexert.library.RippleView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/linecolor"></View>
+
+        <com.andexert.library.RippleView
             android:id="@+id/gocomment"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -136,7 +160,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
-                android:text="@string/givefive" />
+                android:text="评价五星" />
 
             <View
                 android:layout_width="25dp"
@@ -147,6 +171,11 @@
 
 
         </com.andexert.library.RippleView>
+
+
+
+
+
 
     </LinearLayout>
 

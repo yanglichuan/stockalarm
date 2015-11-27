@@ -1,0 +1,387 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    tools:context=".MainActivity">
+
+        <LinearLayout
+            android:id="@+id/ll_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ff2570a1"
+            android:orientation="vertical">
+
+            <View
+                android:id="@+id/statusbar_sp"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"></View>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/goback"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:scaleType="center"
+                        android:src="@drawable/ad_left" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:hint="股票设置"
+                    android:textColor="#fff"
+                    android:textColorHint="#fff"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_below="@+id/ll_top"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/st1"
+                >
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="66dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/fanxing_star_11"
+                    android:layout_height="36dp" />
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="90dp"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/gp_code_1"
+                        android:layout_centerVertical="true"
+                        android:layout_width="130dp"
+                        android:hint="股票代码"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:numeric="decimal"
+                        android:inputType="numberDecimal"
+                        android:gravity="center"
+                        android:background="@drawable/ylcinput"
+                        android:layout_height="35dp" />
+
+                    <EditText
+                        android:id="@+id/gp_name_1"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="130dp"
+                        android:hint="股票名称"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:inputType="text"
+                        android:gravity="center"
+                        android:background="@drawable/ylcinput"
+                        android:layout_height="35dp" />
+
+                    <EditText
+                        android:id="@+id/gp_buyprice_1"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="130dp"
+                        android:hint="买入价位"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:numeric="decimal"
+                        android:inputType="text"
+                        android:gravity="center"
+                        android:background="@drawable/ylcinput"
+                        android:layout_height="35dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="230dp"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/gp_yingli_1"
+                        android:layout_centerVertical="true"
+                        android:layout_width="80dp"
+                        android:hint="盈利LM"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:numeric="decimal"
+                        android:inputType="number"
+                        android:gravity="center"
+                        android:background="@drawable/ylcinput"
+                        android:layout_height="35dp" />
+
+                    <EditText
+                        android:id="@+id/gp_kuisun_1"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="80dp"
+                        android:hint="亏损LM"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:inputType="number"
+                        android:gravity="center"
+                        android:background="@drawable/ylcinput"
+                        android:layout_height="35dp" />
+
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_update_1"
+                    android:layout_width="50dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/update_tt"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/st2"
+                >
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="66dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/fanxing_star_12"
+                    android:layout_height="36dp" />
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="90dp"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/gp_code_2"
+                        android:layout_centerVertical="true"
+                        android:layout_width="130dp"
+                        android:hint="股票代码"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:numeric="decimal"
+                        android:inputType="numberDecimal"
+                        android:gravity="center"
+                        android:background="@drawable/ylcinput"
+                        android:layout_height="35dp" />
+
+                    <EditText
+                        android:id="@+id/gp_name_2"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="130dp"
+                        android:hint="股票名称"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:inputType="text"
+                        android:gravity="center"
+                        android:background="@drawable/ylcinput"
+                        android:layout_height="35dp" />
+
+                    <EditText
+                        android:id="@+id/gp_buyprice_2"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="130dp"
+                        android:hint="买入价位"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:numeric="decimal"
+                        android:inputType="text"
+                        android:gravity="center"
+                        android:background="@drawable/ylcinput"
+                        android:layout_height="35dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="230dp"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/gp_yingli_2"
+                        android:layout_centerVertical="true"
+                        android:layout_width="80dp"
+                        android:hint="盈利LM"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:numeric="decimal"
+                        android:inputType="number"
+                        android:gravity="center"
+                        android:background="@drawable/ylcinput"
+                        android:layout_height="35dp" />
+
+                    <EditText
+                        android:id="@+id/gp_kuisun_2"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="80dp"
+                        android:hint="亏损LM"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:inputType="number"
+                        android:gravity="center"
+                        android:background="@drawable/ylcinput"
+                        android:layout_height="35dp" />
+
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_update_2"
+                    android:layout_width="50dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/update_tt"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/st3"
+                >
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="66dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/fanxing_star_13"
+                    android:layout_height="36dp" />
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="90dp"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:layout_centerVertical="true"
+                        android:layout_width="130dp"
+                        android:hint="股票代码"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:numeric="decimal"
+                        android:inputType="numberDecimal"
+                        android:gravity="center"
+                        android:background="@drawable/ylcinput"
+                        android:layout_height="35dp" />
+
+                    <EditText
+                        android:layout_marginTop="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="130dp"
+                        android:hint="股票名称"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:inputType="text"
+                        android:gravity="center"
+                        android:background="@drawable/ylcinput"
+                        android:layout_height="35dp" />
+
+                    <EditText
+                        android:layout_marginTop="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="130dp"
+                        android:hint="买入价位"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:numeric="decimal"
+                        android:inputType="number"
+                        android:gravity="center"
+                        android:background="@drawable/ylcinput"
+                        android:layout_height="35dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="230dp"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:layout_centerVertical="true"
+                        android:layout_width="80dp"
+                        android:hint="盈利LM"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:numeric="decimal"
+                        android:inputType="number"
+                        android:gravity="center"
+                        android:background="@drawable/ylcinput"
+                        android:layout_height="35dp" />
+
+                    <EditText
+                        android:layout_marginTop="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="80dp"
+                        android:hint="亏损LM"
+                        android:textColor="#fff"
+                        android:textColorHint="#fff"
+                        android:inputType="number"
+                        android:gravity="center"
+                        android:background="@drawable/ylcinput"
+                        android:layout_height="35dp" />
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/update_tt"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

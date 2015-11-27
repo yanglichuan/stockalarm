@@ -5,15 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.ad.block.osaadblock.event.BlockEvent;
+import com.ad.block.osaadblock.utils.StockNewSettingUtils;
 
 import de.greenrobot.event.EventBus;
 
 public class TickTimeReceiver extends BroadcastReceiver {
     public int iTickCount =0;
 
-    public final int timeDis = 1;
+    public int timeDis = 1;
     @Override
     public void onReceive(Context context, Intent intent) {
+        timeDis = StockNewSettingUtils.getTimeBetween(context);
+
         iTickCount ++;
         if(iTickCount == 3600){
             iTickCount = 0;

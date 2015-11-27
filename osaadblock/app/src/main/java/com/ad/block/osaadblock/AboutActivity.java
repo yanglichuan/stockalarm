@@ -11,15 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.TextView;
 
 import com.ad.block.osaadblock.utils.CommonUtils;
 
 public class AboutActivity extends BaseActivity {
     private  View gocomment;
     private  View faq;
-
-    private TextView tv_version;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +36,6 @@ public class AboutActivity extends BaseActivity {
                 showAnim();
             }
         });
-
-        tv_version = (TextView) findViewById(R.id.tv_version);
-        tv_version.setText(CommonUtils.getVersion(mContext));
     }
 
     @Override

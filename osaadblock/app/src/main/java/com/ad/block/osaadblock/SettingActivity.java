@@ -33,6 +33,11 @@ public class SettingActivity extends BaseActivity {
     private View about;
     private View quit;
 
+
+    //
+    private View notifysetting;
+    private View stocksetting;
+
     private ToggleButton toggleButton;
 
     @Override
@@ -49,6 +54,10 @@ public class SettingActivity extends BaseActivity {
         vision_update = findViewById(R.id.verson_update);
         about = findViewById(R.id.about);
         quit = findViewById(R.id.quit);
+        notifysetting = findViewById(R.id.notifysetting);
+        stocksetting = findViewById(R.id.stocksetting);
+
+
 
         toggleButton = (ToggleButton) findViewById(R.id.togglebt);
         toggleButton.setOnToggleChanged(new ToggleButton.OnToggleChanged() {
@@ -75,6 +84,8 @@ public class SettingActivity extends BaseActivity {
         vision_update.setOnClickListener(this);
         about.setOnClickListener(this);
         quit.setOnClickListener(this);
+        notifysetting.setOnClickListener(this);
+        stocksetting.setOnClickListener(this);
 
         quit.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -214,6 +225,12 @@ public class SettingActivity extends BaseActivity {
                 break;
             case R.id.about:
                 AboutActivity.openActivity(mContext);
+                break;
+            case R.id.notifysetting:
+                NotifyYouSettingActivity.openActivity(mContext);
+                break;
+            case R.id.stocksetting:
+                StockAddActivity.openActivity(mContext);
                 break;
         }
     }

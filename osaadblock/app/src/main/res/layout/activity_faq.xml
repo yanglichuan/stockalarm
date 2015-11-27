@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="FAQ"
+                    android:text="软件问题"
                     android:textColor="#fff"
                     android:textSize="18sp" />
             </RelativeLayout>
@@ -82,7 +82,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="@string/faqtitle"
+                        android:text="1：软件好用吗"
                         android:textSize="20sp" />
 
                     <TextView
@@ -92,7 +92,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="10dp"
-                        android:text="@string/faqcontent"
+                        android:text="非常好用"
                         android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -125,7 +125,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
-                        android:text="@string/faqtitle1"
+                        android:text="2：软件不难用吗"
                         android:textSize="20sp" />
 
                     <TextView
@@ -136,7 +136,7 @@
                         android:layout_marginBottom="5dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="@string/faqcontent1"
+                        android:text="一点都不难用"
                         android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -158,7 +158,6 @@
                     android:layout_gravity="left"
                     android:background="#008B45" />
 
-
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -169,7 +168,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
-                        android:text="@string/faqtitle2"
+                        android:text="3：软件有什么作用"
                         android:textSize="20sp" />
 
                     <TextView
@@ -180,7 +179,7 @@
                         android:layout_marginBottom="5dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="@string/faqcontent2"
+                        android:text="随时随地给你预警"
                         android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
