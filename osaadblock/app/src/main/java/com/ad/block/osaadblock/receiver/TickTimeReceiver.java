@@ -25,22 +25,38 @@ import de.greenrobot.event.EventBus;
 
 public class TickTimeReceiver extends BroadcastReceiver {
     public int iTickCount =0;
-
     public int timeDis = 1;
-
     private Context mContent;
+
+    private final String tianqiWhere = "北京";
     @Override
     public void onReceive(Context context, Intent intent) {
         mContent = context;
         if(mLL == null){
             mLL = new IResultListner() {
                 @Override
-                public void onResult(final String realCode,
-                                     final float buyprice,
-                                     final float low,
-                                     final float high,
-                                     String result) {
-                    todoYujing(realCode,buyprice,low,high,result);
+                public void onStockResult(final String realCode,
+                                          final float buyprice,
+                                          final float low,
+                                          final float high,
+                                          String result) {
+                    stockYujing(realCode, buyprice, low, high, result);
+                }
+
+                @Override
+                public void onWhetherResult(String res) {
+                    if(!TextUtils.isEmpty(res)){
+                        String t = tianqiWhere+" "+res.substring(res.indexOf("<status1>")+"<status1>".length(),res.indexOf("</status1>"))+
+                                " "+res.substring(res.indexOf("<status2>")+"<status2>".length(),res.indexOf("</status2>"));
+                        Notification notification =
+                                NotificationUtils.creatNotify(mContent, t,false);
+                        NotificationManager manager =
+                                (NotificationManager) mContent.getSystemService(
+                                        mContent.NOTIFICATION_SERVICE);
+                        manager.notify(notify_whether_id, notification);
+                    }
+
+
                 }
             };
         }
@@ -52,22 +68,94 @@ public class TickTimeReceiver extends BroadcastReceiver {
             iTickCount = 0;
         }
         if(iTickCount % timeDis == 0){
-            //通知更新ui
-            //通知各个activity
-            EventBus.getDefault().post(new BlockEvent());
 
-            pullFromNetWrap();
+            notifyActivity();
+
+            notifyStock();
             //提醒时间
 
             notifyTime();
+
+            pullWetherFromNet(tianqiWhere);
+
+            //提醒点餐了
+            notifyDingcan();
+
+            //下班记得打卡
+            notifyDaka();
+
         }
     }  //如果无网络连接activeInfo为null
 
+
+    private void notifyDingcan(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        if(calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY || calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+            return;
+        }
+
+        int xx =  calendar.get(Calendar.HOUR_OF_DAY);
+        int xx2 = calendar.get(Calendar.MINUTE) + xx*60;
+
+        if(xx2 > (11*60+30) && xx2 < (8*60+34)){
+            String tip = null;
+            tip = "点餐了";
+            Notification notification =
+                    NotificationUtils.creatNotify(mContent, tip,false);
+            NotificationManager manager =
+                    (NotificationManager) mContent.getSystemService(
+                            mContent.NOTIFICATION_SERVICE);
+            manager.notify(notify_dingcan_id, notification);
+        }
+    }
+
+
+
+    private void notifyDaka(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        if(calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY || calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+            return;
+        }
+        int xx =  calendar.get(Calendar.HOUR_OF_DAY);
+        int xx2 = calendar.get(Calendar.MINUTE) + xx*60;
+
+        if(xx2 > (19*60+00) && xx2 < (8*60+4)){
+            String tip = null;
+            tip = "下班打卡";
+            Notification notification =
+                    NotificationUtils.creatNotify(mContent, tip,false);
+            NotificationManager manager =
+                    (NotificationManager) mContent.getSystemService(
+                            mContent.NOTIFICATION_SERVICE);
+            manager.notify(notify_daka_id, notification);
+        }
+    }
+
+
+
+
+
+    private void notifyActivity(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        if(calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY || calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+            return;
+        }
+        //通知更新ui
+        //通知各个activity
+        EventBus.getDefault().post(new BlockEvent());
+    }
 
 
     private void notifyTime(){
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
+        if(calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY || calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+            return;
+        }
+
         int xx =  calendar.get(Calendar.HOUR_OF_DAY);
         int xx2 = calendar.get(Calendar.MINUTE) + xx*60;
 
@@ -80,10 +168,9 @@ public class TickTimeReceiver extends BroadcastReceiver {
                 NotificationManager manager =
                         (NotificationManager) mContent.getSystemService(
                                 mContent.NOTIFICATION_SERVICE);
-                manager.notify(999, notification);
+                manager.notify(notify_time_id, notification);
             }
-        }
-
+        }else
         if(xx2 > (11*60+25) && xx2 < (11*60+29)){
             if(StockNewSettingUtils.getTime_1130(mContent)){
                 String tip = null;
@@ -93,10 +180,9 @@ public class TickTimeReceiver extends BroadcastReceiver {
                 NotificationManager manager =
                         (NotificationManager) mContent.getSystemService(
                                 mContent.NOTIFICATION_SERVICE);
-                manager.notify(999, notification);
+                manager.notify(notify_time_id, notification);
             }
-        }
-
+        }else
         if(xx2 > (12*60+55) && xx2 < (12*60+59)){
             if(StockNewSettingUtils.getTime_1300(mContent)){
                 String tip = null;
@@ -106,9 +192,9 @@ public class TickTimeReceiver extends BroadcastReceiver {
                 NotificationManager manager =
                         (NotificationManager) mContent.getSystemService(
                                 mContent.NOTIFICATION_SERVICE);
-                manager.notify(999, notification);
+                manager.notify(notify_time_id, notification);
             }
-        }
+        }else
         if(xx2 > (14*60+55) && xx2 < (14*60+59)){
             if(StockNewSettingUtils.getTime_1500(mContent)){
                 String tip = null;
@@ -118,9 +204,9 @@ public class TickTimeReceiver extends BroadcastReceiver {
                 NotificationManager manager =
                         (NotificationManager) mContent.getSystemService(
                                 mContent.NOTIFICATION_SERVICE);
-                manager.notify(999, notification);
+                manager.notify(notify_time_id, notification);
             }
-        }
+        }else
         if(xx2 > (14*60+25) && xx2 < (14*60+29)){
             if(StockNewSettingUtils.getTime_1430(mContent)){
                 String tip = null;
@@ -130,19 +216,24 @@ public class TickTimeReceiver extends BroadcastReceiver {
                 NotificationManager manager =
                         (NotificationManager) mContent.getSystemService(
                                 mContent.NOTIFICATION_SERVICE);
-                manager.notify(999, notification);
+                manager.notify(notify_time_id, notification);
             }
         }
     }
 
-    private void pullFromNetWrap(){
+    private void notifyStock(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        if(calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY || calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+            return;
+        }
         String str = StockUtils.getStockCode1(mContent);
         String real = StockNewSettingUtils.getStockExchange(mContent,str) + str;
         try {
             float ff = Float.parseFloat(StockUtils.getStockBuyPrice1(mContent));
             float low =Float.parseFloat(StockUtils.getStockKuisun1(mContent));
             float hight = Float.parseFloat(StockUtils.getStockYingli1(mContent));
-            pullFromNet(real,ff,low,hight,mLL);
+            pullWetherFromNet(real, ff, low, hight);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -154,40 +245,31 @@ public class TickTimeReceiver extends BroadcastReceiver {
             float ff = Float.parseFloat(StockUtils.getStockBuyPrice2(mContent));
             float low =Float.parseFloat(StockUtils.getStockKuisun2(mContent));
             float hight = Float.parseFloat(StockUtils.getStockYingli2(mContent));
-            pullFromNet(real,ff,low,hight,mLL);
+            pullWetherFromNet(real, ff, low, hight);
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
 
-    private IResultListner mLL;
 
-    static interface IResultListner{
-        void onResult(final String realCode,
-                      final float buyprice,
-                      final float low,
-                      final float high,
-                      String result);
-    }
-    private void todoYujing(final String realCode,
-                            final float buyprice,
-                            final float low,
-                            final float high,
-                            final String res){
+    private void stockYujing(final String realCode,
+                             final float buyprice,
+                             final float low,
+                             final float high,
+                             final String res){
 
                 if (!TextUtils.isEmpty(res)) {
                     String[] splits = res.split(",");
                     if (splits.length > 3) {
                         String currentPrice = splits[3];
-                        Float ztPrice = Float.parseFloat(splits[2]);
-                        Float jtPrice = Float.parseFloat(currentPrice);
+                        Float yestodayPrice = Float.parseFloat(splits[2]);
+                        Float todayPrice = Float.parseFloat(currentPrice);
                         // Float zzf = (jtPrice - ztPrice)/ztPrice*100;
                         DecimalFormat decimalFormat = new DecimalFormat("0.00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
                         //String p=decimalFormat.format(zzf);//format 返回的是字符串
 
-
-                        Float shipeishizhuan = (jtPrice - buyprice) / buyprice * 100;
+                        Float shipeishizhuan = (todayPrice - buyprice) / buyprice * 100;
                         decimalFormat = new DecimalFormat("0.00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
                         String p = decimalFormat.format(shipeishizhuan);//format 返回的是字符串
                         //报警
@@ -199,7 +281,7 @@ public class TickTimeReceiver extends BroadcastReceiver {
                             NotificationManager manager =
                                     (NotificationManager) mContent.getSystemService(
                                             mContent.NOTIFICATION_SERVICE);
-                            manager.notify(444, notification);
+                            manager.notify(notify_chaodie_id, notification);
                         }
                         if (shipeishizhuan > high) {
                             String tip = null;
@@ -209,18 +291,25 @@ public class TickTimeReceiver extends BroadcastReceiver {
                             NotificationManager manager =
                                     (NotificationManager) mContent.getSystemService(
                                             mContent.NOTIFICATION_SERVICE);
-                            manager.notify(333, notification);
+                            manager.notify(notify_chaozhang_id, notification);
                         }
                     }
                 }
     }
 
 
-    private void pullFromNet(final String realCode,
-                             final float buyprice,
-                             final float low,
-                             final float high,
-                             final IResultListner ll){
+    private final int notify_chaozhang_id = 444;
+    private final int notify_chaodie_id = 333;
+    private final int notify_time_id = 999;
+    private final int notify_whether_id = 1000;
+    private final int notify_dingcan_id = 1001;
+    private final int notify_daka_id = 1002;
+
+
+    private void pullWetherFromNet(final String realCode,
+                                   final float buyprice,
+                                   final float low,
+                                   final float high){
         HttpRequestManager.getInstance(mContent.getApplicationContext()).request_stock(realCode, new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
@@ -229,12 +318,47 @@ public class TickTimeReceiver extends BroadcastReceiver {
             public void onResponse(Response response) throws IOException {
                 if(response != null && response.body() != null){
                     final String res = new String(response.body().string());
-                    if(ll != null){
-                        ll.onResult(realCode,buyprice,low,high,res);
+                    if(mLL != null){
+                        mLL.onStockResult(realCode, buyprice, low, high, res);
                     }
                 }
             }
         });
+    }
+    private void pullWetherFromNet(final String w){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        int xx =  calendar.get(Calendar.HOUR_OF_DAY);
+        int xx2 = calendar.get(Calendar.MINUTE) + xx*60;
+
+        if(xx2 > (6*60+56) && xx2 < (7*60+59)){
+            HttpRequestManager.getInstance(mContent.getApplicationContext()).request_whether(w, new Callback() {
+                @Override
+                public void onFailure(Request request, IOException e) {
+                }
+
+                @Override
+                public void onResponse(Response response) throws IOException {
+                    if (response != null && response.body() != null) {
+                        final String res = new String(response.body().string());
+                        if (mLL != null) {
+                            mLL.onWhetherResult(res);
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    //
+    private IResultListner mLL;
+    interface IResultListner{
+        void onStockResult(final String realCode,
+                           final float buyprice,
+                           final float low,
+                           final float high,
+                           String result);
+        void onWhetherResult(String res);
     }
 }
 
