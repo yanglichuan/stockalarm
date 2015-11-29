@@ -247,7 +247,6 @@ public class NotifyYouSettingActivity extends BaseActivity {
             case R.id.time_sub:
                 subTimeCount();
                 break;
-
             //
             case R.id.rl_0900:
                 rl_0900.setSelected(!rl_0900.isSelected());

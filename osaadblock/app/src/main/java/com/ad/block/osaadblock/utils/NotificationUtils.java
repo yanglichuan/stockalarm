@@ -124,7 +124,7 @@ public class NotificationUtils {
     /**
      * 显示常驻通知栏
      */
-    public static Notification creatNotify(Context ct,String contentText) {
+    public static Notification creatNotify(Context ct,String contentText, boolean bCancel) {
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(ct);
         Intent it = new Intent();
         it.setClass(ct, MainActivity.class);
@@ -141,7 +141,11 @@ public class NotificationUtils {
         //设置通知 消息 图标
         mNotification.icon = R.mipmap.ic_launcher;
         //在通知栏上点击此通知后自动清除此通知
-        mNotification.flags = Notification.FLAG_ONGOING_EVENT|Notification.FLAG_NO_CLEAR;
+        if(bCancel){
+            mNotification.flags = Notification.FLAG_ONGOING_EVENT|Notification.FLAG_AUTO_CANCEL;
+        }else{
+            mNotification.flags = Notification.FLAG_ONGOING_EVENT|Notification.FLAG_NO_CLEAR;
+        }
         //FLAG_ONGOING_EVENT 在顶部常驻，可以调用下面的清除方法去除 FLAG_AUTO_CANCEL 点击和清理可以去调
         //设置显示通知时的默认的发声、震动、Light效果
          mNotification.defaults = Notification.DEFAULT_ALL;

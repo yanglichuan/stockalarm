@@ -45,7 +45,7 @@ public class BlockService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         String tip = null;
         tip="股票监控服务已经开启";
-        Notification notification = NotificationUtils.creatNotify(BlockService.this,tip);
+        Notification notification = NotificationUtils.creatNotify(BlockService.this,tip,true);
 
         startForeground(ONGOING_NOTIFICATION,notification);
         return START_STICKY;

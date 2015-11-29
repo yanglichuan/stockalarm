@@ -11,8 +11,8 @@ public class StockUtils {
     private static final String stockCode1 = "stockCode1";
     private static final String stockCode2 = "stockCode2";
 
-    private static final String stockPrice1 = "stockPrice1";
-    private static final String stockPrice2 = "stockPrice2";
+    private static final String stockBuyPrice1 = "stockBuyPrice1";
+    private static final String stockBuyPrice2 = "stockBuyPrice2";
 
     private static final String stockYingli1 = "stockYingli1";
     private static final String stockYingli2 = "stockYingli2";
@@ -23,15 +23,15 @@ public class StockUtils {
     //final
     private static final String code1 = "600288";
     private static final String name1 = "大恒科技";
-    private static final String buyprice1 = "1.00";
+    private static final String buyprice1 = "0.1";//默认初始值
     private static final String yingli1 = "5";
-    private static final String kuisun1 = "-2";
+    private static final String kuisun1 = "-4";
 
     private static final String code2 = "600287";
     private static final String name2 = "江苏舜天";
-    private static final String buyprice2 = "1.00";
+    private static final String buyprice2 = "0.1";//默认初始值
     private static final String yingli2 = "5";
-    private static final String kuisun2 = "-2";
+    private static final String kuisun2 = "-4";
 
 
     public static String getStockName1(Context context){
@@ -42,10 +42,10 @@ public class StockUtils {
     }
 
     public static String getStockBuyPrice1(Context context){
-        return RecordFileUtils.getInstance(context.getApplicationContext()).getStringData(stockPrice1,buyprice1);
+        return RecordFileUtils.getInstance(context.getApplicationContext()).getStringData(stockBuyPrice1,buyprice1);
     }
     public static String getStockBuyPrice2(Context context){
-        return RecordFileUtils.getInstance(context.getApplicationContext()).getStringData(stockPrice2,buyprice2);
+        return RecordFileUtils.getInstance(context.getApplicationContext()).getStringData(stockBuyPrice2,buyprice2);
     }
 
     public static String getStockCode1(Context context){
@@ -70,13 +70,20 @@ public class StockUtils {
 
 
 
+    public static void updateStock1BuyPrice(Context context,String price){
+        RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockBuyPrice1, price);
+    }
+
+    public static void updateStock2BuyPrice(Context context,String price){
+        RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockBuyPrice2, price);
+    }
 
 
     public static void addStockItem1(Context context,String code, String name, String price,
                                      String yingli,String kunsui){
         RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockCode1, code);
         RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockName1,name);
-        RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockPrice1, price);
+        RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockBuyPrice1, price);
 
         RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockYingli1, yingli);
         RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockKuisun1, kunsui);
@@ -86,7 +93,7 @@ public class StockUtils {
                                      String yingli,String kunsui){
         RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockCode2, code);
         RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockName2,name);
-        RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockPrice2, price);
+        RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockBuyPrice2, price);
 
         RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockYingli2, yingli);
         RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockKuisun2, kunsui);
@@ -102,8 +109,8 @@ public class StockUtils {
         RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockName1,"");
         RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockName2, "");
 
-        RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockPrice1, "");
-        RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockPrice2, "");
+        RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockBuyPrice1, "");
+        RecordFileUtils.getInstance(context.getApplicationContext()).setStringData(stockBuyPrice2, "");
 
     }
 }

@@ -6,8 +6,6 @@ import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +21,6 @@ import com.ad.block.osaadblock.event.BaseEvent;
 import com.ad.block.osaadblock.event.BlockEvent;
 import com.ad.block.osaadblock.service.BlockService;
 import com.ad.block.osaadblock.utils.CommonUtils;
-import com.ad.block.osaadblock.utils.NotificationUtils;
 import com.ad.block.osaadblock.utils.StockNewSettingUtils;
 import com.ad.block.osaadblock.utils.StockUtils;
 import com.andexert.library.RippleView;
@@ -49,10 +46,22 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
     private final int STATE_OPENED = 3;
     private final int STATE_CLOSEING = 4;
 
+
+    private TextView tv_sh_zhishu;
+    private TextView tv_sh_zhangfu;
+    private TextView tv_sz_zhishu;
+    private TextView tv_sz_zhangfu;
+    private TextView tv_stockname1;
+    private TextView tv_stockname2;
+    private TextView tv_currentGP1Price;
+    private TextView tv_currentGP2Price;
+    private TextView tv_currentZhangfu1;
+    private TextView tv_currentZhagnfu2;
+    private TextView tv_nowshouyi1;
+    private TextView tv_nowshouyi2;
+
     //初始化状态值
     private int iBlockState = STATE_CLOSED;
-
-
 
     private View stockView1;
     private View stockView2;
@@ -81,20 +90,20 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
             //不做任何事情
         }
 
-        stockname1 = (TextView) findViewById(R.id.stockname1);
-        stockname2 = (TextView) findViewById(R.id.stockname2);
-        currentGP1Price = (TextView) findViewById(R.id.stockprice1);
-        currentGP2Price = (TextView) findViewById(R.id.stockprice2);
-        currentZhangfu1 = (TextView) findViewById(R.id.currentzhangfu1);
-        currentZhagnfu2 = (TextView) findViewById(R.id.currentzhangfu2);
-        nowshouyi1 = (TextView) findViewById(R.id.nowshouyi1);
-        nowshouyi2 = (TextView) findViewById(R.id.nowshouyi2);
+        tv_stockname1 = (TextView) findViewById(R.id.stockname1);
+        tv_stockname2 = (TextView) findViewById(R.id.stockname2);
+        tv_currentGP1Price = (TextView) findViewById(R.id.stockprice1);
+        tv_currentGP2Price = (TextView) findViewById(R.id.stockprice2);
+        tv_currentZhangfu1 = (TextView) findViewById(R.id.currentzhangfu1);
+        tv_currentZhagnfu2 = (TextView) findViewById(R.id.currentzhangfu2);
+        tv_nowshouyi1 = (TextView) findViewById(R.id.nowshouyi1);
+        tv_nowshouyi2 = (TextView) findViewById(R.id.nowshouyi2);
 
 
-        sh_zhishu = (TextView) findViewById(R.id.sh_zhishu);
-        sh_zhangfu = (TextView) findViewById(R.id.sh_zhangfu);
-        sz_zhishu = (TextView) findViewById(R.id.sz_zhishu);
-        sz_zhangfu = (TextView) findViewById(R.id.sz_zhangfu);
+        tv_sh_zhishu = (TextView) findViewById(R.id.sh_zhishu);
+        tv_sh_zhangfu = (TextView) findViewById(R.id.sh_zhangfu);
+        tv_sz_zhishu = (TextView) findViewById(R.id.sz_zhishu);
+        tv_sz_zhangfu = (TextView) findViewById(R.id.sz_zhangfu);
 
 
         stockView1 = findViewById(R.id.stockview1);
@@ -108,34 +117,21 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
     @Override
     protected void onResume() {
         super.onResume();
-        initUI();
-        updateSum();
+        setStockNameAndCode();
+        updateWrap();
     }
 
-    private TextView sh_zhishu;
-    private TextView sh_zhangfu;
-    private TextView sz_zhishu;
-    private TextView sz_zhangfu;
-    private TextView stockname1;
-    private TextView stockname2;
-    private TextView currentGP1Price;
-    private TextView currentGP2Price;
-    private TextView currentZhangfu1;
-    private TextView currentZhagnfu2;
-    private TextView nowshouyi1;
-    private TextView nowshouyi2;
 
-
-    private void initUI(){
+    private void setStockNameAndCode(){
         //
-        String name1 = StockUtils.getStockName1(mContext);
-        String name2 = StockUtils.getStockName2(mContext);
+        String stockName1 = StockUtils.getStockName1(mContext);
+        String stockName2 = StockUtils.getStockName2(mContext);
 
-        String code1 = StockUtils.getStockCode1(mContext);
-        String code2 = StockUtils.getStockCode2(mContext);
+        String stockCode1 = StockUtils.getStockCode1(mContext);
+        String stockCode2 = StockUtils.getStockCode2(mContext);
 
-        stockname1.setText(name1+"\n"+code1);
-        stockname2.setText(name2+"\n"+code2);
+        tv_stockname1.setText(stockName1 + "\n" + stockCode1);
+        tv_stockname2.setText(stockName2 + "\n" + stockCode2);
     }
 
 
@@ -412,57 +408,60 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
     public void onEventMainThread(BaseEvent event) {
         super.onEventMainThread(event);
         if(event instanceof BlockEvent){
-            updateSum();
+            updateWrap();
         }
     }
 
-    private void updateSum(){
-        String str = StockUtils.getStockCode1(mContext);
-        String real = StockNewSettingUtils.getStockExchange(mContext,str) + str;
+    private void updateWrap(){
+        String stockCode1 = StockUtils.getStockCode1(mContext);
+        String realCode1 = StockNewSettingUtils.getStockExchange(mContext,stockCode1) + stockCode1;
         try {
-            float ff = Float.parseFloat(StockUtils.getStockBuyPrice1(mContext));
-            float low =Float.parseFloat(StockUtils.getStockKuisun1(mContext));
-            float hight = Float.parseFloat(StockUtils.getStockYingli1(mContext));
-            updateCustom(real,currentGP1Price,currentZhangfu1,nowshouyi1,ff,low,hight);
+            pullFromNet(realCode1, tv_currentGP1Price, tv_currentZhangfu1, tv_nowshouyi1);
         }catch (Exception e){
-            e.printStackTrace();;
+            e.printStackTrace();
         }
 
-
-
-        str = StockUtils.getStockCode2(mContext);
-        real = StockNewSettingUtils.getStockExchange(mContext,str) + str;
-
+        String stockCode2 = StockUtils.getStockCode2(mContext);
+        String realCode2 = StockNewSettingUtils.getStockExchange(mContext,stockCode2) + stockCode2;
         try {
-            float ff = Float.parseFloat(StockUtils.getStockBuyPrice2(mContext));
-            float low =Float.parseFloat(StockUtils.getStockKuisun2(mContext));
-            float hight = Float.parseFloat(StockUtils.getStockYingli2(mContext));
-            updateCustom(real, currentGP2Price, currentZhagnfu2, nowshouyi2, ff, low, hight);
+            float buyPrice2 = Float.parseFloat(StockUtils.getStockBuyPrice2(mContext));
+            pullFromNet(realCode2, tv_currentGP2Price, tv_currentZhagnfu2, tv_nowshouyi2);
         }catch (Exception e){
-            e.printStackTrace();;
+            e.printStackTrace();
         }
 
 
-        updateSh();
-        updatesz();
+        updateShanghai();
+        updateShenzhen();
     }
 
 
-    private void updateSh(){
-        updateCustom("sh000001",sh_zhishu,sh_zhangfu,null,0,0,0);
+    /**
+     * 更新上证指数
+     */
+    private void updateShanghai(){
+        pullFromNet("sh000001", tv_sh_zhishu, tv_sh_zhangfu, null);
 
     }
-    private void updatesz(){
-        updateCustom("sz399001",sz_zhishu,sz_zhangfu,null,0,0,0);
+
+    /**
+     * 更新深证指数
+     */
+    private void updateShenzhen(){
+        pullFromNet("sz399001", tv_sz_zhishu, tv_sz_zhangfu, null);
     }
 
-    private void updateCustom(final String realCode,
-                              final TextView pricetv,
-                              final TextView zhangfuTv,
-                              final TextView yinglilema,
-                              final float buyprice,
-                                final float low,
-                              final float high){
+    /**
+     * 从网上拉取数据
+     * @param realCode
+     * @param pricetv
+     * @param zhangfuTv
+     * @param yinglilema
+     */
+    private void pullFromNet(final String realCode,
+                             final TextView pricetv,
+                             final TextView zhangfuTv,
+                             final TextView yinglilema){
         HttpRequestManager.getInstance(getApplicationContext()).request_stock(realCode, new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
@@ -481,7 +480,7 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
                                     Float ztPrice = Float.parseFloat(splits[2]);
                                     Float jtPrice = Float.parseFloat(currentPrice);
                                     Float zzf = (jtPrice - ztPrice)/ztPrice*100;
-                                    DecimalFormat decimalFormat = new DecimalFormat(".00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+                                    DecimalFormat decimalFormat = new DecimalFormat("0.00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
                                     String p=decimalFormat.format(zzf);//format 返回的是字符串
                                     pricetv.setText(currentPrice);
                                     zhangfuTv.setText(p);
@@ -491,34 +490,31 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
                                     }else{
                                         zhangfuTv.setBackgroundResource(R.drawable.hao2);
                                     }
+                                    float buyprice = 0;
 
                                     if(yinglilema!= null){
+                                        if(yinglilema == tv_nowshouyi1){
+                                            buyprice = Float.parseFloat(StockUtils.getStockBuyPrice1(mContext));
+                                            if(buyprice <1){
+                                                buyprice = jtPrice;
+                                                StockUtils.updateStock1BuyPrice(mContext,String.valueOf(buyprice));
+                                            }
+                                        }else{
+                                            buyprice = Float.parseFloat(StockUtils.getStockBuyPrice2(mContext));
+                                            if(buyprice < 1){
+                                                buyprice = jtPrice;
+                                                StockUtils.updateStock2BuyPrice(mContext,String.valueOf(buyprice));
+                                            }
+                                        }
+
                                         zzf = (jtPrice - buyprice)/buyprice*100;
                                         decimalFormat=new DecimalFormat("0.00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
                                         p=decimalFormat.format(zzf);//format 返回的是字符串
                                         yinglilema.setText(p);
-
-
                                         if((jtPrice - buyprice)>0){
                                             yinglilema.setBackgroundResource(R.drawable.hao1);
                                         }else{
                                             yinglilema.setBackgroundResource(R.drawable.hao2);
-                                        }
-
-                                        //报警
-                                        if(zzf < low){
-                                            String tip = null;
-                                            tip=realCode+"已经超跌了";
-                                            Notification notification = NotificationUtils.creatNotify(mContext, tip);
-                                            NotificationManager manager = (NotificationManager) mContext.getSystemService(NOTIFICATION_SERVICE);
-                                            manager.notify(444,notification);
-                                        }
-                                        if(zzf > high){
-                                            String tip = null;
-                                            tip=realCode+"已经超涨了";
-                                            Notification notification = NotificationUtils.creatNotify(mContext,tip);
-                                            NotificationManager manager = (NotificationManager) mContext.getSystemService(NOTIFICATION_SERVICE);
-                                            manager.notify(333, notification);
                                         }
                                     }
                                 }
@@ -529,7 +525,4 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
             }
         });
     }
-
-
-
 }
