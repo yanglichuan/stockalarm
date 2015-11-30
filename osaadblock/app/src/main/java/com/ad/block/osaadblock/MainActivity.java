@@ -6,6 +6,7 @@ import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -358,6 +359,13 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
     }
 
 
+
+    private void cancelNotifies(){
+        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        manager.cancelAll();
+    }
+
+
     private Handler mHandle = new Handler();
     @Override
     public void onClick(View v) {
@@ -369,6 +377,9 @@ public class MainActivity extends BaseActivity implements RippleView.OnRippleCom
                 if(iBlockState == STATE_CLOSED){
                     animOpen();
                 }
+
+                //取消通知
+                cancelNotifies();
                 break;
 
             case R.id.setting:

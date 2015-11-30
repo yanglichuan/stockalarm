@@ -32,6 +32,14 @@ import java.util.List;
 public class CommonUtils {
 
 
+    public static final int notify_chaozhang_id = 444;
+    public static final int notify_chaodie_id = 333;
+    public static final int notify_time_id = 999;
+    public static final int notify_whether_id = 1000;
+    public static final int notify_dingcan_id = 1001;
+    public static final int notify_daka_id = 1002;
+
+
     public static boolean dealStatusBar(Activity activity) {
         if (activity == null) {
             return false;

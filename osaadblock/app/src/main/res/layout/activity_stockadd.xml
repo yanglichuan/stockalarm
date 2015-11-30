@@ -58,22 +58,15 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="190dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/st1"
                 >
-                <TextView
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="66dp"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/fanxing_star_11"
-                    android:layout_height="36dp" />
-
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="90dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_centerVertical="true"
                     android:orientation="vertical">
 
@@ -121,66 +114,108 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="230dp"
+                    android:layout_marginLeft="165dp"
                     android:layout_centerVertical="true"
                     android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/stock1add1"
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="50sp"
+                            android:text="+"/>
 
-                    <EditText
-                        android:id="@+id/gp_yingli_1"
-                        android:layout_centerVertical="true"
-                        android:layout_width="80dp"
-                        android:hint="盈利LM"
-                        android:textColor="#fff"
-                        android:textColorHint="#fff"
-                        android:numeric="decimal"
-                        android:inputType="number"
-                        android:gravity="center"
-                        android:background="@drawable/ylcinput"
-                        android:layout_height="35dp" />
+                        <TextView
+                            android:id="@+id/gp_yingli_1"
+                            android:layout_centerVertical="true"
+                            android:layout_width="60dp"
+                            android:hint="high"
+                            android:textColor="#fff"
+                            android:textColorHint="#fff"
+                            android:numeric="decimal"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:inputType="number"
+                            android:gravity="center"
+                            android:background="@drawable/ylcinput"
+                            android:layout_height="35dp" />
 
-                    <EditText
-                        android:id="@+id/gp_kuisun_1"
-                        android:layout_marginTop="10dp"
-                        android:layout_centerVertical="true"
-                        android:layout_width="80dp"
-                        android:hint="亏损LM"
-                        android:textColor="#fff"
-                        android:textColorHint="#fff"
-                        android:inputType="number"
-                        android:gravity="center"
-                        android:background="@drawable/ylcinput"
-                        android:layout_height="35dp" />
+                        <TextView
+                            android:id="@+id/stock1sub1"
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="70sp"
+                            android:text="-"/>
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/stock1add2"
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="50sp"
+                            android:text="+"/>
+
+                        <TextView
+                            android:id="@+id/gp_kuisun_1"
+                            android:layout_marginTop="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_width="60dp"
+                            android:hint="low"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:textColor="#fff"
+                            android:textColorHint="#fff"
+                            android:inputType="number"
+                            android:gravity="center"
+                            android:background="@drawable/ylcinput"
+                            android:layout_height="35dp" />
+
+                        <TextView
+                            android:id="@+id/stock1sub2"
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="70sp"
+                            android:text="-"/>
+                    </LinearLayout>
+
 
                 </LinearLayout>
                 <TextView
                     android:id="@+id/tv_update_1"
-                    android:layout_width="50dp"
+                    android:layout_width="40dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:background="@drawable/update_tt"
-                    android:layout_height="50dp" />
+                    android:layout_height="40dp" />
             </RelativeLayout>
 
 
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="190dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/st2"
                 >
-                <TextView
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="66dp"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/fanxing_star_12"
-                    android:layout_height="36dp" />
-
-
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="90dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_centerVertical="true"
                     android:orientation="vertical">
 
@@ -228,44 +263,96 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="230dp"
+                    android:layout_marginLeft="165dp"
                     android:layout_centerVertical="true"
                     android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/gp_yingli_2"
-                        android:layout_centerVertical="true"
-                        android:layout_width="80dp"
-                        android:hint="盈利LM"
-                        android:textColor="#fff"
-                        android:textColorHint="#fff"
-                        android:numeric="decimal"
-                        android:inputType="number"
-                        android:gravity="center"
-                        android:background="@drawable/ylcinput"
-                        android:layout_height="35dp" />
 
-                    <EditText
-                        android:id="@+id/gp_kuisun_2"
-                        android:layout_marginTop="10dp"
-                        android:layout_centerVertical="true"
-                        android:layout_width="80dp"
-                        android:hint="亏损LM"
-                        android:textColor="#fff"
-                        android:textColorHint="#fff"
-                        android:inputType="number"
-                        android:gravity="center"
-                        android:background="@drawable/ylcinput"
-                        android:layout_height="35dp" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/stock2add1"
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="50sp"
+                            android:text="+"/>
+
+                        <TextView
+                            android:id="@+id/gp_yingli_2"
+                            android:layout_centerVertical="true"
+                            android:layout_width="60dp"
+                            android:hint="high"
+                            android:textColor="#fff"
+                            android:textColorHint="#fff"
+                            android:numeric="decimal"
+                            android:inputType="number"
+                            android:gravity="center"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/ylcinput"
+                            android:layout_height="35dp" />
+
+                        <TextView
+                            android:id="@+id/stock2sub1"
+                            android:gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="70sp"
+                            android:text="-"/>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/stock2add2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="50sp"
+                            android:gravity="center"
+                            android:text="+"/>
+
+                        <TextView
+                            android:id="@+id/gp_kuisun_2"
+                            android:layout_marginTop="10dp"
+                            android:layout_centerVertical="true"
+                            android:layout_width="60dp"
+                            android:hint="low"
+                            android:textColor="#fff"
+                            android:textColorHint="#fff"
+                            android:inputType="number"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:gravity="center"
+                            android:background="@drawable/ylcinput"
+                            android:layout_height="35dp" />
+
+                        <TextView
+                            android:id="@+id/stock2sub2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="70sp"
+                            android:gravity="center"
+                            android:text="-"/>
+                    </LinearLayout>
+
+
 
                 </LinearLayout>
                 <TextView
                     android:id="@+id/tv_update_2"
-                    android:layout_width="50dp"
+                    android:layout_width="40dp"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:background="@drawable/update_tt"
-                    android:layout_height="50dp" />
+                    android:layout_height="40dp" />
             </RelativeLayout>
 
 

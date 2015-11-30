@@ -9,6 +9,7 @@ import android.text.TextUtils;
 
 import com.ad.block.osaadblock.HttpRequestManager;
 import com.ad.block.osaadblock.event.BlockEvent;
+import com.ad.block.osaadblock.utils.CommonUtils;
 import com.ad.block.osaadblock.utils.NotificationUtils;
 import com.ad.block.osaadblock.utils.StockNewSettingUtils;
 import com.ad.block.osaadblock.utils.StockUtils;
@@ -53,7 +54,7 @@ public class TickTimeReceiver extends BroadcastReceiver {
                         NotificationManager manager =
                                 (NotificationManager) mContent.getSystemService(
                                         mContent.NOTIFICATION_SERVICE);
-                        manager.notify(notify_whether_id, notification);
+                        manager.notify(CommonUtils.notify_whether_id, notification);
                     }
 
 
@@ -106,7 +107,7 @@ public class TickTimeReceiver extends BroadcastReceiver {
             NotificationManager manager =
                     (NotificationManager) mContent.getSystemService(
                             mContent.NOTIFICATION_SERVICE);
-            manager.notify(notify_dingcan_id, notification);
+            manager.notify(CommonUtils.notify_dingcan_id, notification);
         }
     }
 
@@ -129,7 +130,7 @@ public class TickTimeReceiver extends BroadcastReceiver {
             NotificationManager manager =
                     (NotificationManager) mContent.getSystemService(
                             mContent.NOTIFICATION_SERVICE);
-            manager.notify(notify_daka_id, notification);
+            manager.notify(CommonUtils.notify_daka_id, notification);
         }
     }
 
@@ -152,7 +153,8 @@ public class TickTimeReceiver extends BroadcastReceiver {
     private void notifyTime(){
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-        if(calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY || calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
+        if(calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY
+                || calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY){
             return;
         }
 
@@ -168,7 +170,7 @@ public class TickTimeReceiver extends BroadcastReceiver {
                 NotificationManager manager =
                         (NotificationManager) mContent.getSystemService(
                                 mContent.NOTIFICATION_SERVICE);
-                manager.notify(notify_time_id, notification);
+                manager.notify(CommonUtils.notify_time_id, notification);
             }
         }else
         if(xx2 > (11*60+25) && xx2 < (11*60+29)){
@@ -180,7 +182,7 @@ public class TickTimeReceiver extends BroadcastReceiver {
                 NotificationManager manager =
                         (NotificationManager) mContent.getSystemService(
                                 mContent.NOTIFICATION_SERVICE);
-                manager.notify(notify_time_id, notification);
+                manager.notify(CommonUtils.notify_time_id, notification);
             }
         }else
         if(xx2 > (12*60+55) && xx2 < (12*60+59)){
@@ -192,7 +194,7 @@ public class TickTimeReceiver extends BroadcastReceiver {
                 NotificationManager manager =
                         (NotificationManager) mContent.getSystemService(
                                 mContent.NOTIFICATION_SERVICE);
-                manager.notify(notify_time_id, notification);
+                manager.notify(CommonUtils.notify_time_id, notification);
             }
         }else
         if(xx2 > (14*60+55) && xx2 < (14*60+59)){
@@ -204,7 +206,7 @@ public class TickTimeReceiver extends BroadcastReceiver {
                 NotificationManager manager =
                         (NotificationManager) mContent.getSystemService(
                                 mContent.NOTIFICATION_SERVICE);
-                manager.notify(notify_time_id, notification);
+                manager.notify(CommonUtils.notify_time_id, notification);
             }
         }else
         if(xx2 > (14*60+25) && xx2 < (14*60+29)){
@@ -216,7 +218,7 @@ public class TickTimeReceiver extends BroadcastReceiver {
                 NotificationManager manager =
                         (NotificationManager) mContent.getSystemService(
                                 mContent.NOTIFICATION_SERVICE);
-                manager.notify(notify_time_id, notification);
+                manager.notify(CommonUtils.notify_time_id, notification);
             }
         }
     }
@@ -281,7 +283,7 @@ public class TickTimeReceiver extends BroadcastReceiver {
                             NotificationManager manager =
                                     (NotificationManager) mContent.getSystemService(
                                             mContent.NOTIFICATION_SERVICE);
-                            manager.notify(notify_chaodie_id, notification);
+                            manager.notify(CommonUtils.notify_chaodie_id, notification);
                         }
                         if (shipeishizhuan > high) {
                             String tip = null;
@@ -291,19 +293,12 @@ public class TickTimeReceiver extends BroadcastReceiver {
                             NotificationManager manager =
                                     (NotificationManager) mContent.getSystemService(
                                             mContent.NOTIFICATION_SERVICE);
-                            manager.notify(notify_chaozhang_id, notification);
+                            manager.notify(CommonUtils.notify_chaozhang_id, notification);
                         }
                     }
                 }
     }
 
-
-    private final int notify_chaozhang_id = 444;
-    private final int notify_chaodie_id = 333;
-    private final int notify_time_id = 999;
-    private final int notify_whether_id = 1000;
-    private final int notify_dingcan_id = 1001;
-    private final int notify_daka_id = 1002;
 
 
     private void pullWetherFromNet(final String realCode,

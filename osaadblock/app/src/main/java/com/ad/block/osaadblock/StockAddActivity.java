@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.ad.block.osaadblock.utils.CommonUtils;
 import com.ad.block.osaadblock.utils.StockUtils;
@@ -22,14 +23,25 @@ public class StockAddActivity extends BaseActivity{
     private EditText gp_code_1;
     private EditText gp_name_1;
     private EditText gp_buyprice_1;
-    private EditText gp_yingli_1;
-    private EditText gp_kuisun_1;
+
+    private TextView gp_yingli_1;
+    private TextView gp_kuisun_1;
 
     private EditText gp_code_2;
     private EditText gp_name_2;
     private EditText gp_buyprice_2;
-    private EditText gp_yingli_2;
-    private EditText gp_kuisun_2;
+    private TextView gp_yingli_2;
+    private TextView gp_kuisun_2;
+
+
+    private View stock1add1;
+    private View stock1add2;
+    private View stock1sub1;
+    private View stock1sub2;
+    private View stock2add1;
+    private View stock2add2;
+    private View stock2sub1;
+    private View stock2sub2;
 
 
 
@@ -44,19 +56,39 @@ public class StockAddActivity extends BaseActivity{
         gp_code_1 = (EditText) findViewById(R.id.gp_code_1);
         gp_name_1 = (EditText) findViewById(R.id.gp_name_1);
         gp_buyprice_1 = (EditText) findViewById(R.id.gp_buyprice_1);
-        gp_yingli_1 = (EditText) findViewById(R.id.gp_yingli_1);
+        gp_yingli_1 = (TextView) findViewById(R.id.gp_yingli_1);
         gp_yingli_1.setTextColor(Color.RED);
-        gp_kuisun_1 = (EditText) findViewById(R.id.gp_kuisun_1);
+        gp_kuisun_1 = (TextView) findViewById(R.id.gp_kuisun_1);
         gp_kuisun_1.setTextColor(Color.GREEN);
 
 
         gp_code_2 = (EditText) findViewById(R.id.gp_code_2);
         gp_name_2 = (EditText) findViewById(R.id.gp_name_2);
         gp_buyprice_2 = (EditText) findViewById(R.id.gp_buyprice_2);
-        gp_yingli_2 = (EditText) findViewById(R.id.gp_yingli_2);
+        gp_yingli_2 = (TextView) findViewById(R.id.gp_yingli_2);
         gp_yingli_2.setTextColor(Color.RED);
-        gp_kuisun_2 = (EditText) findViewById(R.id.gp_kuisun_2);
+        gp_kuisun_2 = (TextView) findViewById(R.id.gp_kuisun_2);
         gp_kuisun_2.setTextColor(Color.GREEN);
+
+
+        stock1add1 = findViewById(R.id.stock1add1);
+        stock1add2 = findViewById(R.id.stock1add2);
+        stock1sub1 = findViewById(R.id.stock1sub1);
+        stock1sub2 = findViewById(R.id.stock1sub2);
+        stock2add1 = findViewById(R.id.stock2add1);
+        stock2add2 = findViewById(R.id.stock2add2);
+        stock2sub1 = findViewById(R.id.stock2sub1);
+        stock2sub2 = findViewById(R.id.stock2sub2);
+        stock1add1.setOnClickListener(this);
+        stock1add2.setOnClickListener(this);
+        stock1sub1.setOnClickListener(this);
+        stock1sub2.setOnClickListener(this);
+        stock2add1.setOnClickListener(this);
+        stock2add2.setOnClickListener(this);
+        stock2sub1.setOnClickListener(this);
+        stock2sub2.setOnClickListener(this);
+
+
 
         //约束输入
         gp_code_1.addTextChangedListener(new MaxLengthWatcher(6,gp_code_1));
@@ -76,15 +108,15 @@ public class StockAddActivity extends BaseActivity{
         gp_code_1 = (EditText) findViewById(R.id.gp_code_1);
         gp_name_1 = (EditText) findViewById(R.id.gp_name_1);
         gp_buyprice_1 = (EditText) findViewById(R.id.gp_buyprice_1);
-        gp_yingli_1 = (EditText) findViewById(R.id.gp_yingli_1);
-        gp_kuisun_1 = (EditText) findViewById(R.id.gp_kuisun_1);
+        gp_yingli_1 = (TextView) findViewById(R.id.gp_yingli_1);
+        gp_kuisun_1 = (TextView) findViewById(R.id.gp_kuisun_1);
 
 
         gp_code_2 = (EditText) findViewById(R.id.gp_code_2);
         gp_name_2 = (EditText) findViewById(R.id.gp_name_2);
         gp_buyprice_2 = (EditText) findViewById(R.id.gp_buyprice_2);
-        gp_yingli_2 = (EditText) findViewById(R.id.gp_yingli_2);
-        gp_kuisun_2 = (EditText) findViewById(R.id.gp_kuisun_2);
+        gp_yingli_2 = (TextView) findViewById(R.id.gp_yingli_2);
+        gp_kuisun_2 = (TextView) findViewById(R.id.gp_kuisun_2);
 
         String code1= StockUtils.getStockCode1(mContext);
         String name1 = StockUtils.getStockName1(mContext);
@@ -139,6 +171,63 @@ public class StockAddActivity extends BaseActivity{
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.stock1add1:
+                float xx = Float.parseFloat(gp_yingli_1.getText().toString());
+                xx = xx + 1.0f;
+                gp_yingli_1.setText(String.valueOf(xx));
+
+                break;
+            case R.id.stock1sub1:
+                xx = Float.parseFloat(gp_yingli_1.getText().toString());
+                xx = xx - 1.0f;
+                gp_yingli_1.setText(String.valueOf(xx));
+
+                break;
+
+
+            case R.id.stock1add2:
+                xx = Float.parseFloat(gp_kuisun_1.getText().toString());
+                xx = xx + 1.0f;
+                gp_kuisun_1.setText(String.valueOf(xx));
+
+                break;
+
+            case R.id.stock1sub2:
+                xx = Float.parseFloat(gp_kuisun_1.getText().toString());
+                xx = xx - 1.0f;
+                gp_kuisun_1.setText(String.valueOf(xx));
+
+                break;
+
+
+
+            case R.id.stock2add1:
+                xx = Float.parseFloat(gp_yingli_2.getText().toString());
+                xx = xx + 1.0f;
+                gp_yingli_2.setText(String.valueOf(xx));
+
+                break;
+            case R.id.stock2sub1:
+                xx = Float.parseFloat(gp_yingli_2.getText().toString());
+                xx = xx - 1.0f;
+                gp_yingli_2.setText(String.valueOf(xx));
+
+                break;
+            case R.id.stock2add2:
+                xx = Float.parseFloat(gp_kuisun_2.getText().toString());
+                xx = xx + 1.0f;
+                gp_kuisun_2.setText(String.valueOf(xx));
+
+                break;
+
+            case R.id.stock2sub2:
+                xx = Float.parseFloat(gp_kuisun_2.getText().toString());
+                xx = xx - 1.0f;
+                gp_kuisun_2.setText(String.valueOf(xx));
+
+                break;
+
+
             case R.id.tv_update_1:
                 if(TextUtils.isEmpty(gp_code_1.getText().toString())){
                     ToastUtils.toastL(mContext,"股票代码不能为空");
